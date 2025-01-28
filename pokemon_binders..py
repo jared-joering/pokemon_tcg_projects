@@ -114,29 +114,32 @@ sets_data = [
     ("Paldean Fates", 245), ## Special set.  (Gen. IX)
     ("Temporal Forces", 218),
     ("Twilight Masquerade", 226),
-    ("Shrouded Fable", 99) ## Special set.  (Gen. IX)
-]   #TODO: Make a way to read sets at a 'glance' from a website
+    ("Shrouded Fable", 99), ## Special set.  (Gen. IX)
+    ("Surging Sparks", 252),
+    ("Prismatic Evolutions", 180), ## Special set. (Gen. IX)
+    ("Journey Together", 180),
+]   #TODO: make a way to read sets at a 'glance' from a website
     #TODO: read from a website instead of manual entry
 
-# Initialize variables
+# initialize variables
 binder_size_limit = 504
 current_binder = []
 binders = []
 
-# Iterate through the sets and group them into binders
+# iterate through the sets and group them into binders
 for set_name, set_total in sets_data:
     if sum(current_binder) + set_total <= binder_size_limit:
         current_binder.append(set_total)
     else:
-        # Start a new binder
+        # else start a new binder 
         binders.append(current_binder)
         current_binder = [set_total]
 
-# Add the last binder if it's not empty
+# add the last binder if it's not empty
 if current_binder:
     binders.append(current_binder)
 
-# Print the binders and the sets contained within them
+# print the binders and the sets contained within them
 for i, binder in enumerate(binders):
     binder_total = sum(binder)
     print(f"Binder {i + 1} (Total: {binder_total}):")
