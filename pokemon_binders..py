@@ -120,13 +120,14 @@ sets_data = [
     ("Journey Together", 180),
 ]   #TODO: make a way to read sets at a 'glance' from a website
     #TODO: read from a website instead of manual entry
+    #TODO: monitor prices and log them with a script?
 
 # initialize variables
 binder_size_limit = 504
 current_binder = []
 binders = []
 
-# iterate through the sets and group them into binders
+# iterate through the sets and group them into binders 
 for set_name, set_total in sets_data:
     if sum(current_binder) + set_total <= binder_size_limit:
         current_binder.append(set_total)
