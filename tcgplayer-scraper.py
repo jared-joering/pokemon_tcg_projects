@@ -6,11 +6,11 @@ from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 
 # set up the FireFox driver, its options, and practice url
-url_input = input("Enter the TCGPlayer URL: ")
+url_input = input("Enter the TCGPlayer URL: ") # TODO: add a bulk entry option for cards
 driver = webdriver.Firefox()
 
-# load the webpage
-driver.get(url_input) # driver.get(url_input) save this for manual entry
+# load the user-supplied webpage
+driver.get(url_input)
 
 # obligatory wait
 driver.implicitly_wait(5)
@@ -42,29 +42,20 @@ rows = soup.select("tbody[data-v-43dee7cd] tr")
 for row in rows:
     object = row.find_all("td") # locating the first td we need to start pulling data from
     if object:
-        date = object[0].get_text(strip=True)   # getting the date
-        price = object[1].get_text(strip=True)  # and price
+        date = object[0].get_text(strip=True)   # getting (and cleaning) the date
+        price = object[1].get_text(strip=True)  # and the price too
         dates.append(date)
         prices.append(price)
 
-# TODO: open a csv file in append mode and write the data to it
+# open a csv file in append mode and write the data to it
 with open('tcgplayer-data.csv', 'a+', newline='') as csvfile:
     reader = csv.reader(csvfile)
     writer = csv.writer(csvfile)
     csvfile.seek(0) # move to the very beginning to set up and check if the header is blank
     
     if list(reader) == []:  # check if the header is there or not
-        writer.writerow(['Card', 'Set', 'Number', 'Rarity'] + dates)
+        writer.writerow(['Card', 'Set', 'Number', 'Rarity'] + dates) # if not, write the header
     
-    writer.writerow([card, set, number, rarity] + prices)
-        
-
-
-        
-
-# TODO: test this out
-# TODO: possibly 
-
-
+    writer.writerow([card, set, number, rarity] + prices) # regardless of whether or not the header's there, write the card data
 
 driver.quit()
