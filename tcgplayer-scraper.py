@@ -1,3 +1,7 @@
+# TODO: Modularize this code into functions and classes
+# TODO: add a bulk entry option for cards
+# TODO: possibly find a way to remove the 'date' list altogether, but will use it for now
+
 import csv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -6,7 +10,7 @@ from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 
 # set up the FireFox driver, its options, and practice url
-url_input = input("Enter the TCGPlayer URL: ") # TODO: add a bulk entry option for cards
+url_input = input("Enter the TCGPlayer URL: ")
 driver = webdriver.Firefox()
 
 # load the user-supplied webpage
@@ -24,15 +28,12 @@ set = driver.find_element(By.XPATH, "//a[@data-testid='lnkProductDetailsSetName'
 number = driver.find_element(By.XPATH, "//span[@data-v-7d56df22='']").text.split(" / ")[0]  # splitting between the /
 rarity = driver.find_element(By.XPATH, "//span[@data-v-7d56df22='']").text.split(" / ")[1]
 
-# another wait to ensure the page is loaded
-driver.implicitly_wait(5)
-
 # inserting Beautiful Soup to parse the page source since Selelnium wasn't able
 html = driver.page_source
 soup = BeautifulSoup(html, "html.parser")
 
 # creating a date and price list to store the data we want to extract
-dates = []  # TODO: possibly find a way to remove this altogether, but will use it for now
+dates = []
 prices = []
 
 # using bs to find the table body that contains the price history
@@ -44,6 +45,12 @@ for row in rows:
     if object:
         date = object[0].get_text(strip=True)   # getting (and cleaning) the date
         price = object[1].get_text(strip=True)  # and the price too
+        
+        try:    # converting the price to a float so that we can do calculations later
+            price = float(price.replace("$", "").replace(",", "")) # removing the dollar sign and commas
+        except ValueError:
+            price = 0.0 # had to set this up because some cards have been recently released, so they don't have pricing data before they were actually on market
+
         dates.append(date)
         prices.append(price)
 
@@ -56,6 +63,6 @@ with open('tcgplayer-data.csv', 'a+', newline='') as csvfile:
     if list(reader) == []:  # check if the header is there or not
         writer.writerow(['Card', 'Set', 'Number', 'Rarity'] + dates) # if not, write the header
     
-    writer.writerow([card, set, number, rarity] + prices) # regardless of whether or not the header's there, write the card data
+    writer.writerow([card, set, number, rarity] + [f"{price:.2f}" for price in prices]) # regardless of whether or not the header's there, write the card data
 
 driver.quit()
