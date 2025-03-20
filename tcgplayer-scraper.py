@@ -1,6 +1,5 @@
-# TODO: Modularize this code into functions and classes
+# TODO: modularize this code into functions and classes
 # TODO: add a bulk entry option for cards
-# TODO: possibly find a way to remove the 'date' list altogether, but will use it for now
 
 import csv
 from selenium import webdriver
@@ -27,6 +26,10 @@ card = driver.find_element(By.XPATH, "//span[@data-testid='lnkProductSearchSet']
 set = driver.find_element(By.XPATH, "//a[@data-testid='lnkProductDetailsSetName']").text
 number = driver.find_element(By.XPATH, "//span[@data-v-7d56df22='']").text.split(" / ")[0]  # splitting between the /
 rarity = driver.find_element(By.XPATH, "//span[@data-v-7d56df22='']").text.split(" / ")[1]
+volatility = driver.find_element(By.XPATH, "//span[@data-v-6bf6748f='']").text
+condition = driver.find_element(By.XPATH, "//section[@class='spotlight__condition']").text # TODO: split this on '2' to get the condition of the card, historically
+
+'''driver.close()
 
 # inserting Beautiful Soup to parse the page source since Selelnium wasn't able
 html = driver.page_source
@@ -58,11 +61,11 @@ for row in rows:
 with open('tcgplayer-data.csv', 'a+', newline='') as csvfile:
     reader = csv.reader(csvfile)
     writer = csv.writer(csvfile)
-    csvfile.seek(0) # move to the very beginning to set up and check if the header is blank
+    csvfile.seek(0) # move to the very beginning to set up a check if the header is blank
     
     if list(reader) == []:  # check if the header is there or not
-        writer.writerow(['Card', 'Set', 'Number', 'Rarity'] + dates) # if not, write the header
+        writer.writerow(['Card', 'Set', 'Number', 'Rarity', 'Volatility'] + dates) # if not, write the header
     
-    writer.writerow([card, set, number, rarity] + [f"{price:.2f}" for price in prices]) # regardless of whether or not the header's there, write the card data
+    writer.writerow([card, set, number, rarity, volatility] + [f"{price:.2f}" for price in prices]) # regardless of whether or not the header's there, write the card data
 
-driver.quit()
+driver.quit() # closing the browser'''
