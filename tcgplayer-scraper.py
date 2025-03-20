@@ -1,5 +1,6 @@
-# TODO: modularize this code into functions and classes
+# TODO: !!! modularize this code into functions and classes !!!
 # TODO: add a bulk entry option for cards
+# TODO: implement a better wait method instead of implicitly waiting
 
 import csv
 from selenium import webdriver
@@ -27,13 +28,16 @@ set = driver.find_element(By.XPATH, "//a[@data-testid='lnkProductDetailsSetName'
 number = driver.find_element(By.XPATH, "//span[@data-v-7d56df22='']").text.split(" / ")[0]  # splitting between the /
 rarity = driver.find_element(By.XPATH, "//span[@data-v-7d56df22='']").text.split(" / ")[1]
 volatility = driver.find_element(By.XPATH, "//span[@data-v-6bf6748f='']").text
-condition = driver.find_element(By.XPATH, "//section[@class='spotlight__condition']").text # TODO: split this on '2' to get the condition of the card, historically
-
-'''driver.close()
+condition = " ".join(driver.find_element(By.XPATH, "//section[@class='spotlight__condition']").text.split(" ")[:2]) # pulling the first two words 'Near Mint', 'Lightly Played', etc.
+if "Damaged" in condition: # TODO: a very basic check for damaged cards, but it works for now
+    condition = "Damaged"
 
 # inserting Beautiful Soup to parse the page source since Selelnium wasn't able
 html = driver.page_source
 soup = BeautifulSoup(html, "html.parser")
+
+# another wait
+driver.implicitly_wait(3)
 
 # creating a date and price list to store the data we want to extract
 dates = []
@@ -64,8 +68,10 @@ with open('tcgplayer-data.csv', 'a+', newline='') as csvfile:
     csvfile.seek(0) # move to the very beginning to set up a check if the header is blank
     
     if list(reader) == []:  # check if the header is there or not
-        writer.writerow(['Card', 'Set', 'Number', 'Rarity', 'Volatility'] + dates) # if not, write the header
+        writer.writerow(['Card', 'Set', 'Number', 'Rarity', 'Condition', 'Volatility'] + dates) # if not, write the header
     
-    writer.writerow([card, set, number, rarity, volatility] + [f"{price:.2f}" for price in prices]) # regardless of whether or not the header's there, write the card data
+    writer.writerow([card, set, number, rarity, condition, volatility] + [f"{price:.2f}" for price in prices]) # regardless of whether or not the header's there, write the card data
 
-driver.quit() # closing the browser'''
+driver.quit() # closing the browser
+
+print("Data extraction complete. Check 'tcgplayer-data.csv' for results.") # let the user know that the script has finished running
