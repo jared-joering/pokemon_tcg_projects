@@ -1,5 +1,32 @@
-This entire folder will be dedicated to my undying pursuit to collect 'em all, for the most part.  I have a great big TODO list, of which is to make a .csv where I can add the new sets manually or, even more novel, where I can just have the sets added upon refresh by a webscraping script and added to binders.
+#### About
 
-Additionally, I'll be working through financials and pricing trends to find the best time to buy singles and sealed sets as well.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-This place is the hub for my Pokemon madness.
+#### Data Sources
+
+CSVs:
+
+1. 
+2. 
+
+Web Scraper:
+
+1.
+
+#### Installation
+
+Before getting started, you'll need the following:
+
+* Python
+
+#### 
+
+
+
+#### Code Louisville: Data Analyst Capstone
+
+TODO: Talk about project
+TODO: Talk about methodology
+TODO: Talk about installing selenium, beautiful soup, and how to run web scraper
+TODO: Data Dictionary
+TODO: Talk about future plans
