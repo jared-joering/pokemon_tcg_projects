@@ -14,7 +14,7 @@ CSVs:
 1. 
 2. 
 
-Web Scraper:
+Web Scraper: ![Pikachu from Detective Pikachu](images/pikachu-magnifying-glass.png)
 
 1.
 
