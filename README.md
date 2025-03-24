@@ -2,9 +2,9 @@
 
 ![Pokemon](images/pokemon-logo.png)
 
-#### Project Overview
+#### About This Project
 
-This is a project of mine, a little professional, but very personal.  I love this hobby, so I set out to find and see if I can extrapolate some insights into card collecting.  At first, as I elaborate in the 'Introduction', I was going to find the best time to purchase cards based upon a years worth of data, but I found a popularity .csv and I thought about that instead.
+This project aims to shed a little light on the relationship between popularity and the Pokemon depicted in the card and whether or not that drives prices, increases volatility, and if so: what the impact on those variables actually are.
 
 #### Data Sources
 
@@ -39,29 +39,50 @@ Before getting started, you'll need the following:
 ```
 pip install -r requirements.txt
 ```
+
 5. This was created in Visual Studio Code with Jupyter Notebook.  The main file is "price-history-pokemon-cards.ipynb", as such you will need Jupyter Notebook to run it.
 
 #### Data Dictionary
 
 tcgplayer-data.csv
 
-|Column Index|Column Name|Description|data type|
-|---|---|---|---|
-|0|'Card'|Pokemon depicted in the card|object|
-|1|'Set'|Set containing the card|object|
-|2|'Number'|Set number|object|
-|3|'Rarity'|Rarity of the card|object|
-|4|'Condition'||object|
-|5|'Volatility'||object|
-|6|'3/18 to 3/24'||object|
-|...|'...'|...||
-|57|'3/10 to 3/16'||object|
+|Column Name|Description|data type|
+|---|---|---|
+|'Card'|Pokemon depicted in the card|object|
+|'Set'|Set containing the card|object|
+|'Number'|Set number|object|
+|'Rarity'|Rarity of the card|object|
+|'Condition'|The condition of the card|object|
+|'Volatility'|A metric of price fluctuations|object|
+|'3/18 to 3/24'|Price during the week of March 3/18 to 3/24|float64|
+|...|...|...|
+|'3/10 to 3/16'|Price during the week of March 3/10 to 3/16|float64|
+
+> Note: Columns from '3/18 to 3/24' on to '3/10 to 3/16' represent weekly price ranges for the full year.
 
 pokemon-favorites-list.csv
 
-
+|Column Name|Description|data type|
+|---|---|---|
+|Pokemon|Name of the Pokemon|object|
+|Number of votes|How many votes the Pokemon got|Int64|
+|Rank|The respective ranking for each Pokemon|Int64|
 
 final_df
+
+|Column Name|Description|data type|
+|---|---|---|
+|'Card'|Pokemon depicted in the card|object|
+|'Set'|Set containing the card|object|
+|'Number'|Set number|object|
+|'Rarity'|Rarity of the card|object|
+|'Condition'|The condition of the card|object|
+|'Volatility'|A metric of price fluctuations|object|
+|'3/18 to 3/24'|Price during the week of March 3/18 to 3/24|float64|
+|...|...|...|
+|'3/10 to 3/16'|Price during the week of March 3/10 to 3/16|float64|
+
+> Note: Similarly to the 'tcgplayer-data.csv', this data frame has the same calendar year's worth of weeks.
 
 #### Data Analysis Capstone Satisfied Features List
 
@@ -88,11 +109,3 @@ final_df
 5. Interpretation of your data
 
         * Annotated my code with markdown, wrote clear code comments.  README is well-written.  Everything else is cleaned and functional.
-
-#### Code Louisville: Data Analyst Capstone
-
-TODO: Talk about project
-TODO: Talk about methodology
-TODO: Talk about installing selenium, beautiful soup, and how to run web scraper
-TODO: Data Dictionary
-TODO: Talk about future plans

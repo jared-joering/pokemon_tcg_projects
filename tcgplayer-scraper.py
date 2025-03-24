@@ -9,9 +9,10 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 
-# set up the FireFox driver, its options, and practice url
+# make sure you copy the URL of the card itself
+# you will have to click on the condition yourself
 url_input = input("Enter the TCGPlayer URL: ")
-driver = webdriver.Firefox()
+driver = webdriver.Firefox() # set up the FireFox driver
 
 # load the user-supplied webpage
 driver.get(url_input)
@@ -74,4 +75,5 @@ with open('tcgplayer-data.csv', 'a+', newline='') as csvfile:
 
 driver.quit() # closing the browser
 
-print("Data extraction complete. Check 'tcgplayer-data.csv' for results.") # let the user know that the script has finished running
+# wait for a couple of seconds, if you try to enter them too quickly the data will mess up.
+print("Complete.  Please wait a few seconds for the prompt to return.") # let the user know that the script has finished running
