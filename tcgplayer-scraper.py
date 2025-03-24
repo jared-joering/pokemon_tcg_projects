@@ -63,17 +63,17 @@ for row in rows:
         prices.append(price)
 
 # open a csv file in append mode and write the data to it
-with open('tcgplayer-data.csv', 'a+', newline='') as csvfile:
+with open('tcgplayer-data.csv', 'a+', newline='') as csvfile: # append mode is preferential as it starts at the first blank line, making it easier to write
     reader = csv.reader(csvfile)
     writer = csv.writer(csvfile)
-    csvfile.seek(0) # move to the very beginning to set up a check if the header is blank
+    csvfile.seek(0) # due to being in append mode, we move to the very beginning to set up a check if the header is blank
     
     if list(reader) == []:  # check if the header is there or not
         writer.writerow(['Card', 'Set', 'Number', 'Rarity', 'Condition', 'Volatility'] + dates) # if not, write the header
     
-    writer.writerow([card, set, number, rarity, condition, volatility] + [f"{price:.2f}" for price in prices]) # regardless of whether or not the header's there, write the card data
+    writer.writerow([card, set, number, rarity, condition, volatility] + [f"{price:.2f}" for price in prices]) # after checking whether or not the header's there, write the card data
 
 driver.quit() # closing the browser
 
 # wait for a couple of seconds, if you try to enter them too quickly the data will mess up.
-print("Complete.  Please wait a few seconds for the prompt to return.") # let the user know that the script has finished running
+print("Complete.  Please wait a few seconds for the data to be entered.") # let the user know that the script has finished running
