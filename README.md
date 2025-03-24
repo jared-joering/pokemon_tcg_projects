@@ -66,22 +66,27 @@ final_df
 #### Data Analysis Capstone Satisfied Features List
 
 1. Loading Data
+
         * Read two .csv's ('tcgplayer-data.csv' and 'pokemon-favorites-list.csv')
         * Scraped data with a web scraper (tcgplayer-scraper.py)
 
 2. Clean and operate on the data while combining them
+
         * Cleaned (removed 'Volatility' and 'Votes') and merged 'tcgplayer-data.csv' and 'pokemon-favorites-list.csv' into 'final_df'.
         * Then calculated two new metrics 'Price-to-Populariy Ratio' and 'Popularity-Adjusted Volatility' (PPR and PAV respectively)
         * Transformed data as well (i.e. splitting and exploding)
 
 3. Visualize / Present your data.
+
         * Created four charts utilizing seaborn, numpy, and matplotlib.
 
 4. Best practices: Enhance your project to a higher tier that will impress employers and help other programmers understand your project. Choose 2 from this table
+
         * Utilized a virtual environment, included instructions here.
         * Built a custom Data Dictionary, included here.
 
 5. Interpretation of your data
+
         * Annotated my code with markdown, wrote clear code comments.  README is well-written.  Everything else is cleaned and functional.
 
 #### Code Louisville: Data Analyst Capstone
