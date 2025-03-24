@@ -1,6 +1,11 @@
-#### About
+## Pokemon TCG Price Analysis
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+![Pokemon](images/pokemon-logo.png)
+
+#### Project Overview
+
+This is a project of mine, a little professional, but very personal.  I love this hobby, so I set out to find and see if I can extrapolate some insights into card collecting
+
 
 #### Data Sources
 
