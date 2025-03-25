@@ -68,22 +68,6 @@ pokemon-favorites-list.csv
 |Number of votes|How many votes the Pokemon got|Int64|
 |Rank|The respective ranking for each Pokemon|Int64|
 
-final_df
-
-|Column Name|Description|data type|
-|---|---|---|
-|'Card'|Pokemon depicted in the card|object|
-|'Set'|Set containing the card|object|
-|'Number'|Set number|object|
-|'Rarity'|Rarity of the card|object|
-|'Condition'|The condition of the card|object|
-|'Volatility'|A metric of price fluctuations|object|
-|'3/18 to 3/24'|Price during the week of March 3/18 to 3/24|float64|
-|...|...|...|
-|'3/10 to 3/16'|Price during the week of March 3/10 to 3/16|float64|
-
-> Note: Similarly to the 'tcgplayer-data.csv', this data frame has the same calendar year's worth of weeks.
-
 #### Data Analysis Capstone Satisfied Features List
 
 1. Loading Data
