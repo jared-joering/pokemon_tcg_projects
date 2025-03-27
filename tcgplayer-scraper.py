@@ -10,8 +10,7 @@ from selenium.webdriver.firefox.service import Service
 from webdriver_manager.firefox import GeckoDriverManager 
 from bs4 import BeautifulSoup
 
-# make sure you copy the URL of the card itself
-# you will have to click on the condition yourself
+# make sure you copy the URL of the card itself, you'll also have to click on the condition
 url_input = input("Enter the TCGPlayer URL: ")
 service = Service(GeckoDriverManager().install()) # using webdriver_manager to automatically install and keep up-to-date
 driver = webdriver.Firefox(service = service) # set up the FireFox driver
@@ -19,7 +18,7 @@ driver = webdriver.Firefox(service = service) # set up the FireFox driver
 # load the user-supplied webpage
 driver.get(url_input)
 
-# obligatory wait
+# waiting for the webpage to load
 driver.implicitly_wait(5)
 
 # find the '1Y' (1 year) button and click it so that we can get the history for the last 12 months
@@ -35,12 +34,12 @@ condition = " ".join(driver.find_element(By.XPATH, "//section[@class='spotlight_
 if "Damaged" in condition: # TODO: a very basic check for damaged cards, but it works for now
     condition = "Damaged"
 
-# inserting Beautiful Soup
+# creating and calling the soup parser to help with pulling the pricing data
 html = driver.page_source
 soup = BeautifulSoup(html, "html.parser")
 
-# another wait
-driver.implicitly_wait(3)
+# giving time for the year table to load
+driver.implicitly_wait(5)
 
 # creating a date and price list to store the data we want to extract
 dates = []
@@ -50,14 +49,14 @@ prices = []
 rows = soup.select("tbody[data-v-43dee7cd] tr")
 
 # create a simple for loop to iterate through each row and extract the data
-for row in rows:
+for row in rows: # each row is 'gibberish', with clear-cut dates and prices stored toward the end
     object = row.find_all("td") # locating the first td we need to start pulling data from
     if object:
         date = object[0].get_text(strip=True)   # getting (and cleaning) the date
         price = object[1].get_text(strip=True)  # and the price too
         
-        try:    # converting the price to a float so that we can do calculations later
-            price = float(price.replace("$", "").replace(",", "")) # removing the dollar sign and commas
+        try: # creating a try-except loop as some prices were either entered wrong or didn't exist
+            price = float(price.replace("$", "").replace(",", "")) # converting the price to a float so that we can do calculations later, removing the dollar sign and commas
         except ValueError:
             price = 0.0 # had to set this up because some cards have been recently released, so they don't have pricing data before they were actually on market
 
