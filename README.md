@@ -1,10 +1,16 @@
-## Pokemon TCG Price Analysis
-
 ![Pokemon](images/pokemon-logo.png)
 
-#### About This Project
+#### About This Project <img src = "images/pikachu-magnifying-glass.png" alt = "Pikachu from Detective Pikachu" align = "right" style = "length: 25%; width: 25%;">
 
-This project aims to shed a little light on the relationship between popularity and the Pokemon depicted in the card and whether or not that drives prices, increases volatility, and if so: what the impact on those variables actually are.
+At first, this project was created to see when the best time was to buy cards.  Now, that is still the case and I fully intend on fleshing this project out in the future.  During my search for useable APIS, I did happen upon a popularity chart and thus this iteration was born.  With that said, this project aims to shed a faint light on the relationship between popularity and the Pokemon depicted in the card and whether or not that drives prices, increases volatility, and if so: what the impact on those variables actually are and whether or not a deeper, more thorough search is warranted.
+
+#### Information and Potential Troubleshooting
+
+* If the price-history-pokemon-cards.ipynb errors on the first Run All, be patient and click it again.
+
+* As far as the tcgplayer-scraper.py is concerned, that's a bit more fickle but only insofar as the data entry is concerned.  For that, you should monitor your tcgplayer-data.csv.  There may be some values missed.  If that happens, delete the row, and then re-add it.  This usually happens with older cards.  
+
+* The scraper, as it currently stands (3/27) does not check for duplicate entries into the database.  Be careful!
 
 #### Data Sources
 
@@ -19,15 +25,21 @@ Web Scraper:
 
 #### Installation
 
-Before getting started, you'll need the following:
+Before getting started, you'll need the following for the .ipynb to be read:
 
 * Python
 * pandas
-* Selenium
 * numPy
-* Beautiful Soup
 
-#### Running the Program
+And these for the tcgplayer-scraper.py:
+
+* Selenium
+* Beautiful Soup
+* webdriver_manager
+
+All of these can be found at step 4.
+
+#### Running the Notebook
 1. As of this submission, Python 3.13.0 was used and Python 3 is required.  Ensure that you have it installed.
 
 2. Clone the repo from GitHub (https://github.com/jared-joering/pokemon_tcg_projects.git).
@@ -40,9 +52,17 @@ Before getting started, you'll need the following:
 pip install -r requirements.txt
 ```
 
-5. This was created in Visual Studio Code with Jupyter Notebook.  The main file is "price-history-pokemon-cards.ipynb", as such you will need Jupyter Notebook to run it.
+5. Both this project and the web scraper were created and majority ran in Visual Studio Code with Jupyter Notebook.
 
-#### Data Dictionary
+#### Running the Web Scraper
+
+You'll need [FireFox](https://www.mozilla.org/en-US/firefox/new/).  That's it!
+
+### Using the Web Scraper
+
+To run the web scraper, you'll just need to run the script and then find the full-URL of the card you wish to enter (i.e. 'https://www.tcgplayer.com/product/201352/pokemon-sm-cosmic-eclipse-pikachu-secret?Condition=Near+Mint&Language=English&page=1').  This card has been purposefully left out of the database.  Give it a try!
+
+#### Custom Data Dictionary
 
 tcgplayer-data.csv
 

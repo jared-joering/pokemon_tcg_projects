@@ -1,18 +1,20 @@
-# TODO: !!! modularize this code into functions and classes !!!
+# TODO: modularize this code
 # TODO: add a bulk entry option for cards
-# TODO: implement a better wait method instead of implicitly waiting
+# TODO: implement a better wait method instead of implicitly waiting, sometimes the input messes up
+# TODO: check for duplicate cards before entry
 
 import csv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.service import Service
+from webdriver_manager.firefox import GeckoDriverManager 
 from bs4 import BeautifulSoup
 
 # make sure you copy the URL of the card itself
 # you will have to click on the condition yourself
 url_input = input("Enter the TCGPlayer URL: ")
-driver = webdriver.Firefox() # set up the FireFox driver
+service = Service(GeckoDriverManager().install()) # using webdriver_manager to automatically install and keep up-to-date
+driver = webdriver.Firefox(service = service) # set up the FireFox driver
 
 # load the user-supplied webpage
 driver.get(url_input)
@@ -23,7 +25,7 @@ driver.implicitly_wait(5)
 # find the '1Y' (1 year) button and click it so that we can get the history for the last 12 months
 driver.find_element(By.XPATH, "//button[contains(text(), '1Y')]").click()
 
-# find the name, set, card number, and rarity of the card
+# find the name, set, card number, rarity, volatility, and condition of the card with selenium
 card = driver.find_element(By.XPATH, "//span[@data-testid='lnkProductSearchSet']").text
 set = driver.find_element(By.XPATH, "//a[@data-testid='lnkProductDetailsSetName']").text
 number = driver.find_element(By.XPATH, "//span[@data-v-7d56df22='']").text.split(" / ")[0]  # splitting between the /
@@ -33,7 +35,7 @@ condition = " ".join(driver.find_element(By.XPATH, "//section[@class='spotlight_
 if "Damaged" in condition: # TODO: a very basic check for damaged cards, but it works for now
     condition = "Damaged"
 
-# inserting Beautiful Soup to parse the page source since Selelnium wasn't able
+# inserting Beautiful Soup
 html = driver.page_source
 soup = BeautifulSoup(html, "html.parser")
 
@@ -44,7 +46,7 @@ driver.implicitly_wait(3)
 dates = []
 prices = []
 
-# using bs to find the table body that contains the price history
+# using bs4 to find the table body that contains the price history
 rows = soup.select("tbody[data-v-43dee7cd] tr")
 
 # create a simple for loop to iterate through each row and extract the data
