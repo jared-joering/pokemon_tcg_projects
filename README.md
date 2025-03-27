@@ -1,16 +1,18 @@
 ![Pokemon](images/pokemon-logo.png)
 
-#### About This Project <img src = "images/pikachu-magnifying-glass.png" alt = "Pikachu from Detective Pikachu" align = "right" style = "length: 25%; width: 25%;">
+#### About This Project
 
-At first, this project was created to see when the best time was to buy cards.  Now, that is still the case and I fully intend on fleshing this project out in the future.  During my search for useable APIS, I did happen upon a popularity chart and thus this iteration was born.  With that said, this project aims to shed a faint light on the relationship between popularity and the Pokemon depicted in the card and whether or not that drives prices, increases volatility, and if so: what the impact on those variables actually are and whether or not a deeper, more thorough search is warranted.
+At first, this project was created to see when the best time was to buy cards.  Now, that is still the case and I fully intend on fleshing this project out in the future.  During my search for useable APIS, I did happen upon a popularity chart and thus this iteration was born.  With that said, this project aims to shed a faint light on the relationship between popularity and the Pokemon depicted in the card and whether or not that drives prices, increases volatility, and if so: what the impact on those variables actually are and whether or not a deeper, more thorough search is warranted. <img src = "images/pikachu-magnifying-glass.png" alt = "Pikachu from Detective Pikachu" align = "right" style = "length: 25%; width: 25%;">
 
-#### Information and Potential Troubleshooting
+#### Information and Troubleshooting
 
 * If the price-history-pokemon-cards.ipynb errors on the first Run All, be patient and click it again.
 
 * As far as the tcgplayer-scraper.py is concerned, that's a bit more fickle but only insofar as the data entry is concerned.  For that, you should monitor your tcgplayer-data.csv.  There may be some values missed.  If that happens, delete the row, and then re-add it.  This usually happens with older cards.  
 
 * The scraper, as it currently stands (3/27) does not check for duplicate entries into the database.  Be careful!
+
+* If there are no values in the '1Y' chart for the card of your choice, the scraper **will** return an error.  
 
 #### Data Sources
 
@@ -52,7 +54,7 @@ All of these can be found at step 4.
 pip install -r requirements.txt
 ```
 
-5. Both this project and the web scraper were created and majority ran in Visual Studio Code with Jupyter Notebook.
+> *Note: Both this project and the web scraper were created and tested in Visual Studio Code with Jupyter Notebook on two machines.  One was a laptop and another a desktop, both Windows.*
 
 #### Running the Web Scraper
 
@@ -78,7 +80,7 @@ tcgplayer-data.csv
 |...|...|...|
 |'3/10 to 3/16'|Price during the week of March 3/10 to 3/16|float64|
 
-> Note: Columns from '3/18 to 3/24' on to '3/10 to 3/16' represent weekly price ranges for the full year.
+> *Note: Columns from '3/18 to 3/24' on to '3/10 to 3/16' represent weekly price ranges for the full year.*
 
 pokemon-favorites-list.csv
 
