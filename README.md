@@ -8,11 +8,11 @@ At first, this project was created to see when the best time was to buy cards.  
 
 * If the price-history-pokemon-cards.ipynb errors on the first Run All, be patient and click it again.
 
-* As far as the tcgplayer-scraper.py is concerned, that's a bit more fickle but only insofar as the data entry is concerned.  For that, you should monitor your tcgplayer-data.csv.  There may be some values missed.  If that happens, delete the row, and then re-add it.  This usually happens with older cards.  
+* As far as the tcgplayer-scraper.py is concerned, that's a bit more fickle but only insofar as the data entry is concerned.  For that, you should monitor your tcgplayer-data.csv.  There may be some values missed.  If that happens, delete the row, and then re-add it through retrying the scraper.  This usually happens with older cards.  
 
 * The scraper, as it currently stands (3/27) does not check for duplicate entries into the database.  Be careful!
 
-* If there are no values in the '1Y' chart for the card of your choice, the scraper **will** return an error.  
+* If there are no values in the '1Y' chart for the card of your choice, the scraper will not work.  
 
 #### Data Sources
 
@@ -62,7 +62,7 @@ You'll need [FireFox](https://www.mozilla.org/en-US/firefox/new/).  That's it!
 
 ### Using the Web Scraper
 
-To run the web scraper, you'll just need to run the script and then find the full-URL of the card you wish to enter (i.e. 'https://www.tcgplayer.com/product/201352/pokemon-sm-cosmic-eclipse-pikachu-secret?Condition=Near+Mint&Language=English&page=1').  This card has been purposefully left out of the database.  Give it a try!
+To run the web scraper, you'll just need to run the script, then find the full-URL of the card you wish to enter (i.e. 'https://www.tcgplayer.com/product/201352/pokemon-sm-cosmic-eclipse-pikachu-secret?Condition=Near+Mint&Language=English&page=1'), and paste it when prompted.  The aforementioned card URL has been purposefully left out of the database.  Give it a try!
 
 #### Custom Data Dictionary
 
